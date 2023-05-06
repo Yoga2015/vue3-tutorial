@@ -8,42 +8,29 @@
 </template>
 
 <script>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 export default {
   name: 'App',
   setup() {
-    // ref 
+    // 数据
     let name = ref('李四')
     let age = ref(25)
     console.log(name);  // RefImpl {..., _rawValue: '李四', _value: '李四'}
     console.log(age);   // RefImpl {..., _rawValue: 25, _value: 25}
 
-
-    // reactive
-    // let numbers = reactive(666)   // value cannot be made reactive: 666
-
-    // let job = ref({
-    //   type: '前端工程师',
-    //   salary: '30K'
-    // })
-    // console.log(job.value);    //  Proxy(Object) {type: '前端', salary: '40K'}
-    // console.log(job.value.type);    // 前端工程师
-
-    let job = reactive({
+    let job = ref({
       type: '前端工程师',
-      salary: '40K'
+      salary: '30K'
     })
-    console.log(job);    //  Proxy(Object) {type: '前端工程师', salary: '40K'}
-    console.log(job.type);   // 前端工程师
-    console.log(job.salary);  // 40K
-
+    console.log(job.value);    //  Proxy(Object) {type: '前端', salary: '40K'}
+    console.log(job.value.type);    // 前端工程师
 
     function changeInfo() {
       name.value = '老六',
         age.value = 30,
 
-        job.type = '后端工程师'
-      job.salary = '60k'
+        job.value.type = '后端工程师'
+      job.value.salary = '60k'
     }
 
     return {
