@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue3中实现响应式</title>
+  </head>
+  <body>
+    <script>
+      let person = {
+        name: "李四",
+        age: 20,
+      };
+
+      // 模拟Vue2中实现响应式  （Vue2 实现 响应式是通过 Object.defineProperty() ）
+      // #region
+      /* 
+      // p 是正在被代理的对象，目前 p 对象还是个空对象,
+      // 给 p 对象 新增 name属性
+
+      let p = {};
+
+       Object.defineProperty(p, "name", {
+        // 有人来读取name时调用
+        get() {
+          return person.name;
+        },
+        // 有人来修改name时调用
+        set(value) {
+          console.log("有人来修改name属性,我发现了,我去更新界面！");
+          person.name = value;
+        },
+      });
+
+      // 给 p 对象 新增 age属性
+      Object.defineProperty(p, "age", {
+        // 有人来读取age时调用
+        get() {
+          return person.age;
+        },
+        // 有人来修改age时调用
+        set(value) {
+          console.log("有人来修改age属性,我发现了,我去更新界面！");
+          person.age = value;
+        },
+      }); 
+      */
+      // #endregion
+
+      // 模拟Vue3中实现响应式  （Vue3 实现 响应式是通过 Proxy() ）  
+      // #region               target 指 源对象person ， propName 指 正在操作的属性 , propValue 指 被操作后的属性的属性值
+      
+      let proxyObj = new Proxy(person, {
+
+        // 有人来 读取 p 的某个属性 时 调用
+        get(target, propName,receiver) {
+          console.log("有人来读取 p 身上的某个属性了", target, propName, receiver); // {name: '李四', age: 20} , name
+          console.log( receiver === proxyObj );   // true
+          //  receiver 就是 代理对象本身 或者 继承代理对象的对象，它表示触发 get() 时正确的上下文。
+          //  receiver 是来执行 target 对象内的 getter调用时的this指向的。
+
+          console.log(`有人来读取 p 身上的 ${propName} 属性了`);
+          // return target[propName];
+          return Reflect.get(target,propName)
+        },
+
+        // 有人来 修改 p 的某个属性 ，或 给 p 追加某个属性时 调用
+        set(target, propName, propValue) {
+          // console.log(`有人来修改 p 身上的 ${propName} 属性了`,target, propName, propValue); // {name: '李四', age: 20}, name, 老王
+          console.log(`有人来修改 p 身上的 ${propName} 属性了, 我要去更新界面了`); 
+
+          // 但是 此时 源对象 还没真正 被改变！！ 需要真实地去修改
+          // target[propName] = propValue
+          Reflect.set(target,propName,propValue)
+        },
+
+        // 有人来 删除 p 的某个属性 时 调用
+        deleteProperty(target,propName){
+          console.log(`有人来 删除 p 身上的 ${propName} 属性了, 我要去更新界面了`); 
+
+          // return delete target[propName]
+          return Reflect.deleteProperty(target,propName)
+        }
+      });
+      
+      // #endregion
+
+
+      // Reflect
+      // #region
+      /*
+        let obj = { a: 1, b: 2 };
+
+        // 通过 Object.defineProperty 去操作
+        try {
+          Object.defineProperty(obj, "c", {
+            get() {
+              return 3;
+            },
+          });
+          Object.defineProperty(obj, "c", {
+            get() {
+              return 4;
+            },
+          });
+        } catch (error) {
+          console.log(error);
+        }
+
+        // console.log("如果上面出现报错，这句打印语句是不会输出到控制台的"); 
+
+
+        // 通过 Reflect.defineProperty 去操作
+        const x1 = Reflect.defineProperty(obj, "c", {
+          get() {
+            return 3;
+          },
+        });
+        console.log(x1);
+
+        const x2 = Reflect.defineProperty(obj, "c", {
+          get() {
+            return 4;
+          },
+        });
+
+        if (x2) {
+          console.log("某某某操作成功了");
+        } else {
+          console.log("某某某操作失败了");
+        }
+
+        console.log("如果上面出现报错，这句打印语句也能输出到控制台的");
+      */
+    
+      // #endregion
+    </script>
+  </body>
+</html>
