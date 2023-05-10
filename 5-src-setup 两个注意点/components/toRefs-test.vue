@@ -25,6 +25,8 @@ import { reactive, toRefs } from 'vue'
 export default {
   name: 'MyTest',
   setup() {
+
+    let sum = ref(0)
     const obj = reactive({
       name: 'walking',
       gender: '男',

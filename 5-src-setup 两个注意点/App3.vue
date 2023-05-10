@@ -15,7 +15,7 @@
 
 <script>
 import Demo from './components/Demo.vue'
-import Test from './components/test.vue'
+import Test from './components/toRefs-test.vue'
 export default {
   name: 'App',
   components: {

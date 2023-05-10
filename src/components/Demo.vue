@@ -1,5 +1,5 @@
 <template>
-  <h3>当前求和为: {{ sum }}</h3>
+  <h3>Vue3 当前求和为: {{ sum }}</h3>
   <button @click="sum++">点我+1</button>
 </template>
 
@@ -7,7 +7,7 @@
 import { ref } from 'vue'
 
 export default {
-  name: 'MyDemo',
+  name: 'MyDemoVue3',
   setup() {
     let sum = ref(0)
 
@@ -15,6 +15,7 @@ export default {
       sum
     }
   },
+
 }
 </script>
 
