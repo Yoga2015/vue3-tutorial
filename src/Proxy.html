@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proxy</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let person = {
+        name: "张三",
+        age: 18,
+      };
+
+      let p = new Proxy(person, {
+        set(target, propName, Value) {
+          console.log(` ${propName} 被修改了，我要去更新页面了`);
+          return (target[propName] = Value);
+        },
+      });
+
+      let name = p.name;
+
+      // 在控制台中 ，通过 p 对象来 获取 或 修改
+    </script>
+  </body>
+</html>

@@ -1,4 +1,6 @@
 <template>
+  <h2>使用 toRef 和 toRefs </h2>
+  <h5>{{ person }}</h5>
   <h3>姓名：{{ name }}</h3>
   <h3>年龄：{{ age }}</h3>
   <h3>薪资：{{ job.j1.salary }} K</h3>
@@ -23,6 +25,10 @@ export default {
     })
 
     return {
+      // name: toRef(person, 'name'),
+      // age: toRef(person, 'age'),
+      // salary: toRef(person.job.j1, 'salary'),
+      person,
       ...toRefs(person)
     }
   },
