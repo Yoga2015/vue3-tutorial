@@ -2,18 +2,17 @@
   <button @click="isShowDemo = !isShowDemo">
     切换隐藏/显示Demo组件
   </button>
-  <Demo v-if="isShowDemo"></Demo>
+  <Demo2 v-if="isShowDemo"></Demo2>
 </template>
 
 <script>
 import { ref } from 'vue';
-
-import Demo from './components/Demo.vue'
-
+// import Demo from './components/Demo.vue'
+import Demo2 from './components/Demo2.vue'
 
 export default {
   name: 'App',
-  components: { Demo },
+  components: { Demo2 },
   setup() {
 
     let isShowDemo = ref(true)
