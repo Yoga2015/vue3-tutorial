@@ -1,25 +1,18 @@
 <template>
-  <button @click="isShowDemo = !isShowDemo">
-    切换隐藏/显示Demo组件
-  </button>
-  <Demo v-if="isShowDemo"></Demo>
+  <input type="text" v-model="keyword">
 </template>
 
 <script>
 import { ref } from 'vue';
-import Demo from './components/Demo.vue'
-
 export default {
   name: 'App',
-  components: { Demo },
   setup() {
 
-    let isShowDemo = ref(true)
+    let keyword = ref('hello')
 
     return {
-      isShowDemo
+      keyword
     }
-
   },
 }
 </script>
