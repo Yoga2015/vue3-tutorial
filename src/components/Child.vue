@@ -6,7 +6,17 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+
+// ref 函数 处理基本类型
+
+let name = ref('李四');
+
+let age = ref(25)
+
+console.log(name);  // RefImpl {..., _rawValue: '李四', _value: '李四'}
+
+console.log(age);   // RefImpl {..., _rawValue: 25, _value: 25}
+
 export default {
   name: 'myChild',
   

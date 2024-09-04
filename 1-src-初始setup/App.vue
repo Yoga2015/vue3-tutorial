@@ -1,8 +1,10 @@
 <template>
-  <h1>一个人的信息</h1>
-  <h3>我叫 {{ name }}</h3>
-  <h3>我今年 {{ age }}</h3>
-  <button @click="sayhi">打招呼</button>
+  <div>
+    <h1>一个人的信息</h1>
+    <h3>我叫 {{ name }}</h3>
+    <h3>我今年 {{ age }}</h3>
+    <button @click="sayhi">打招呼</button>
+  </div>
 </template>
 
 <script>
