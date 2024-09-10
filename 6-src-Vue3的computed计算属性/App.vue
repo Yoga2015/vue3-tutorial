@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Demo from './components/Demo.vue'
+import Demo from './components/ComputedDemo.vue'
 
 export default {
   name: 'App',
@@ -12,4 +12,3 @@ export default {
   }
 }
 </script>
-
